@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Itinerario de Viaje: Sicilia Oriental (Horarios Vuelos)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2d3748;
+            line-height: 1.6;
+            background-color: #f4f7f6;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f4f7f6;
+            padding: 20px;
+        }
+
+        .header-banner {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0f2d59 0%, #1e4e8c 100%);
+            color: #ffffff;
+            text-align: center;
+            border-bottom: 5px solid #d69e2e;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header-banner h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .header-banner p {
+            margin: 0;
+            font-size: 14px;
+            color: #e2e8f0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .intro-text {
+            font-size: 15px;
+            margin: 25px auto;
+            color: #4a5568;
+            text-align: center;
+            max-width: 90%;
+            font-style: italic;
+        }
+
+        .day-card {
+            margin-bottom: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .day-header {
+            background-color: #1e4e8c;
+            color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .day-badge {
+            background-color: #d69e2e;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .route-bar {
+            background-color: #ebf4ff;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #2b6cb0;
+            font-weight: 600;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .day-body {
+            padding: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background-color: #d69e2e;
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: 9px;
+            top: 22px;
+            width: 2px;
+            height: calc(100% - 12px);
+            background-color: #e2e8f0;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .time-tag {
+            display: inline-block;
+            background-color: #edf2f7;
+            color: #4a5568;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .time-tag.flight {
+            background-color: #feebc8;
+            color: #c05621;
+        }
+
+        .stop-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+
+        .stop-desc {
+            font-size: 14px;
+            color: #4a5568;
+            margin: 0 0 8px 0;
+            text-align: justify;
+        }
+
+        .maps-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #2b6cb0;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-top: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .maps-button:hover {
+            background-color: #2c5282;
+        }
+
+        .maps-button span {
+            margin-right: 6px;
+        }
+
+        .beach-alert {
+            background-color: #e6fffa;
+            border: 1px solid #b2f5ea;
+            border-left: 5px solid #319795;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        .beach-alert h4 {
+            margin: 0 0 8px 0;
+            font-size: 15px;
+            color: #234e52;
+            font-weight: 700;
+        }
+
+        .beach-alert ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .beach-alert li {
+            font-size: 13px;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .beach-alert li:last-child {
+            margin-bottom: 0;
+        }
+
+        @media print {
+            body, .wrapper { background-color: #ffffff; padding: 0; }
+            .day-card { page-break-inside: avoid; box-shadow: none; }
+            .maps-button { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="header-banner">
+        <h1>SICILIA ORIENTAL</h1>
+        <p>Boda en Marzamemi & Ruta en Coche</p>
+    </div>
+
+    <div class="intro-text">
+        Planificación ajustada a vuestros vuelos reales (Llegada: 16:35 | Salida: 17:50). Pulsa los botones azules en carretera para abrir el GPS móvil.
+    </div>
+
+    <!-- DÍA 1 -->
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Jueves 8 de Octubre: Llegada y rumbo al sur</h2>
+            <span class="day-badge">Día 1</span>
+        </div>
+        <div class="route-bar">
+            📍 Aeropuerto de Catania ➔ Marzamemi (Directo)
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <span class="time-tag flight">16:35</span>
+                <div class="stop-title">🛬 Aterrizaje en Catania</div>
+                <p class="stop-desc">Llegada del vuelo desde Málaga. Control, recogida de equipaje y trámites en el mostrador del coche de alquiler de la terminal.</p>
+                <a href="https://maps.google.com/?q=Catania-Fontanarossa+Airport" target="_blank" class="maps-button"><span>🗺️</span> Ubicación Alquiler de Coche</a>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">17:30 - 19:00</span>
+                <div class="stop-title">Trayecto en coche directo a Marzamemi</div>
+                <p class="stop-desc">Salida del aeropuerto conduciendo rumbo sur por la autopista E45. Al ser tarde, se va directo para aprovechar las últimas luces del día durante el viaje en carretera.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">19:15 en adelante</span>
+                <div class="stop-title">Check-in y Cena en la Piazza</div>
+                <p class="stop-desc">Llegada al apartamento en Marzamemi, descarga de maletas y paseo nocturno para cenar por todo lo alto en la icónica y animada Piazza Regina Margherita.</p>
+                <a href="https://maps.google.com/?q=Piazza+Regina+Margherita,+Marzamemi" target="_blank" class="maps-button"><span>🗺️</span> Ruta a Piazza Regina Margherita</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- DÍA 2 -->
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Viernes 9 de Octubre: Mañana de playa paradisíaca y tarde en Siracusa</h2>
+            <span class="day-badge">Día 2</span>
+        </div>
+        <div class="route-bar">
+            📍 Marzamemi ➔ Playa de Calamosche ➔ Siracusa (Ortigia) ➔ Marzamemi
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <span class="time-tag">09:30 - 13:30</span>
+                <div class="stop-title">Desconexión en Playa de Calamosche</div>
+                <p class="stop-desc">Trayecto corto de 20 minutos. Tiempo para disfrutar de una mañana completa de sol, baño y relax en una de las calas vírgenes más bonitas y tranquilas de Italia.</p>
+                <a href="https://maps.google.com/?q=Spiaggia+di+Calamosche,+Italy" target="_blank" class="maps-button"><span>🗺️</span> Ruta al Parking de Calamosche</a>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">14:30 - 21:30</span>
+                <div class="stop-title">Tarde y cena en la Isla de Ortigia (Siracusa)</div>
+                <p class="stop-desc">Trayecto de 35 minutos. Almuerzo o tapeo tardío por el casco histórico, visita a la majestuosa Piazza del Duomo y contemplación del atardecer sobre el mar Mediterráneo en la mítica Fuente de Areusa.</p>
+                <a href="https://maps.google.com/?q=Isola+di+Ortigia,+Siracusa" target="_blank" class="maps-button"><span>🗺️</span> Ruta a Ortigia (Siracusa)</a>
+            </div>
+
+            <div class="beach-alert">
+                <h4>💡 Recuerdos para Calamosche:</h4>
+                <ul>
+                    <li>Se camina un sendero de 1 km llano (15 min) desde el parking, llevad calzado cómodo.</li>
+                    <li>Playa virgen protegida: imprescindible llevar vuestra propia agua y algún snack.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DÍA 3 -->
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Sábado 10 de Octubre: El gran día de la Boda</h2>
+            <span class="day-badge">Día 3</span>
+        </div>
+        <div class="route-bar">
+            📍 Marzamemi (Enlace oficial a las 12:00)
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <span class="time-tag">09:00 - 11:30</span>
+                <div class="stop-title">Preparativos personales</div>
+                <p class="stop-desc">Mañana de relax total en vuestro apartamento de Marzamemi para vestirse y arreglarse tranquilamente sin prisas.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">12:00 en adelante</span>
+                <div class="stop-title">Celebración de la Boda</div>
+                <p class="stop-desc">Asistencia al enlace matrimonial. Banquete, cóctel y fiesta en el espectacular y romántico entorno histórico de la Tonnara de Marzamemi.</p>
+                <a href="https://maps.google.com/?q=Tonnara+di+Marzamemi" target="_blank" class="maps-button"><span>🗺️</span> Ubicación Tonnara</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- DÍA 4 -->
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Domingo 11 de Octubre: Joya Barroca y traslado a Catania</h2>
+            <span class="day-badge">Día 4</span>
+        </div>
+        <div class="route-bar">
+            📍 Marzamemi ➔ Noto ➔ Catania (Alojamiento urbano)
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <span class="time-tag">10:00 - 12:30</span>
+                <div class="stop-title">Visita a Noto (Recuperada de la llegada)</div>
+                <p class="stop-desc">Check-out de Marzamemi. Parada estratégica a mitad de camino para visitar Noto a plena luz del día. Paseo por el Corso Vittorio Emanuele y café en sus históricas terrazas frente a la imponente Catedral.</p>
+                <a href="https://maps.google.com/?q=Noto,+Sicily,+Italy" target="_blank" class="maps-button"><span>🗺️</span> Ruta hacia Noto</a>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">12:30 - 14:00</span>
+                <div class="stop-title">Viaje hacia el norte y check-in</div>
+                <p class="stop-desc">Conducción de una hora hasta vuestro apartamento en Catania. Dejad las maletas y buscad aparcamiento para el coche; el resto de las visitas de la ciudad se harán a pie.</p>
+                <a href="https://maps.google.com/?q=Catania,+Sicily,+Italy" target="_blank" class="maps-button"><span>🗺️</span> Ruta hacia Catania</a>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">16:30 - 19:30</span>
+                <div class="stop-title">Paseo Monumental por Catania</div>
+                <p class="stop-desc">Paseo relajado por la arbolada Vía Etnea con vistas al imponente volcán Etna de fondo. Parada en la Piazza del Duomo para admirar la icónica escultura de lava negra: la Fontana dell'Elefante.</p>
+                <a href="https://maps.google.com/?q=Piazza+del+Duomo,+Catania" target="_blank" class="maps-button"><span>🗺️</span> Ir a Piazza del Duomo</a>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">20:30 en adelante</span>
+                <div class="stop-title">Cena tradicional siciliana</div>
+                <p class="stop-desc">Cena típica en las animadas terrazas junto al histórico Teatro Massimo Bellini o en el barrio antiguo del Castello Ursino para tomar una genuina Pasta alla Norma.</p>
+                <a href="https://maps.google.com/?q=Castello+Ursino,+Catania" target="_blank" class="maps-button"><span>🗺️</span> Zona de Restaurantes (Castello Ursino)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- DÍA 5 -->
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Lunes 12 de Octubre: Tradición y vuelo de regreso</h2>
+            <span class="day-badge">Día 5</span>
+        </div>
+        <div class="route-bar">
+            📍 Catania ➔ Aeropuerto de Catania ➔ Vuelo a Málaga
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <span class="time-tag">09:30 - 11:30</span>
+                <div class="stop-title">Esencia pura en "A Pescheria"</div>
+                <p class="stop-desc">Paseo matutino por el mercado de pescado más famoso e histórico de Sicilia, detrás de la catedral. Un estallido de color, voces y tradición de lo más auténtico.</p>
+                <a href="https://maps.google.com/?q=Pescheria+di+Catania" target="_blank" class="maps-button"><span>🗺️</span> Ir a la Pescheria</a>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag">12:00 - 14:30</span>
+                <div class="stop-title">Almuerzo tardío y última Granita</div>
+                <p class="stop-desc">Tiempo libre para hacer compras de recuerdos de última hora, pasear por el Giardino Bellini o disfrutar de un delicioso almuerzo y un brioche con granita de despedida.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag flight">15:50</span>
+                <div class="stop-title">Devolución del coche en el aeropuerto</div>
+                <p class="stop-desc">Trayecto corto de 15 minutos al aeropuerto. Devolución del vehículo con el depósito lleno y paso por los mostradores de facturación y seguridad con 2 horas de antelación.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="time-tag flight">17:50</span>
+                <div class="stop-title">🛫 Vuelo de regreso</div>
+                <p class="stop-desc">Salida del avión rumbo a Málaga. ¡Fin de la aventura siciliana!</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
